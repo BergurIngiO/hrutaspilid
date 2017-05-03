@@ -64,5 +64,5 @@ while kostur == "ja":
             if hrutateljari == len(texti2):
                 hrutateljari = 0
         teljari = 0
-
+ 
     input("Viltu halda áfram? ja/nei")
