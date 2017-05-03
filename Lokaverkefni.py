@@ -24,53 +24,46 @@ einkunn_fyrir_malir = 8
 with open("hrutar.txt", "r", encoding="utf-8")as f:
     texti = f.read()
     texti2 = texti.split(";")
-print(texti2)
 for x in range(len(texti2)):
     hrutalisti.append(texti2[hrutateljari])
     hrutateljari += 1
 shuffle(hrutalisti)
-print(hrutalisti[0])
 flag=True
 for i in range(len(texti2)):
     while len(hrutalisti)>0 and flag==True:
         teljari2 += 1
         if teljari2 % 2 == 0:
             spilari1.append(hrutalisti[0])
-
         if teljari2 % 2 == 1:
             tolva.append(hrutalisti[0])
             flag = False
-print("spilari er með",spilari1)
-print("tölvan er með",tolva)
 dicta1 = eval(spilari1[0])
 dicta2 = eval(tolva[0])
-print(dicta1)
-for key, value in dicta1.items():
-    print(key)
-    print(value[0])
-print(hrutalisti)
 while kostur == "ja":
     teljari1+=1
     if teljari1%2==0:
-
-        print("nú á notandi leik")
-        print("Veldu 1 ef þú vilt keppa í þyngd hrútsins.\n"
-              "Veldu 2 ef þú vilt keppa í mjólkurlagni dætra sem hrúturinn á.\n"
-              "Veldu 3 ef þú vilt keppa í gæði ullar sem er á hrútnum.\n"
-              "Veldu 4 ef þú vilt keppa í fjölda afkvæma sem hrúturinn á.\n"
-              "Veldu 5 ef þú vilt keppa í gæði lærsins sem hrúturinn hefur.\n"
-              "Veldu 6 ef þú vilt keppa í frjósemi hrútsins.\n"
-              "Veldu 7 ef þú vilt keppa í þykkt bakvöðva hrútsins.\n"
-              "Veldu 8 ef þú vilt keppa í gæðum fyrir malir hrútsins.\n")
-        flokkur=int(input("Sláðu inn tölu til að velja flokk!"))
+        for key, value in dicta1.items():
+            print("nú á notandi leik")
+            print("Notandi er með hrútinn", key)
+            print("Veldu 1 ef þú vilt keppa í þyngd hrútsins.\n",value[0],"KG. \n"
+                  "Veldu 2 ef þú vilt keppa í mjólkurlagni dætra sem hrúturinn á.\n",value[1],"\n"
+                  "Veldu 3 ef þú vilt keppa í gæði ullar sem er á hrútnum.\n",value[2],"\n"
+                  "Veldu 4 ef þú vilt keppa í fjölda afkvæma sem hrúturinn á.\n",value[3],"\n"
+                  "Veldu 5 ef þú vilt keppa í gæði lærsins sem hrúturinn hefur.\n",value[4],"\n"
+                  "Veldu 6 ef þú vilt keppa í frjósemi hrútsins.\n",value[5],"\n"
+                  "Veldu 7 ef þú vilt keppa í þykkt bakvöðva hrútsins.\n",value[6],"\n"
+                  "Veldu 8 ef þú vilt keppa í gæðum fyrir malir hrútsins.\n",value[7],"\n")
+            flokkur=int(input("Sláðu inn tölu til að velja flokk!"))
     if teljari1%2==1:
-        print("nú á tölvan leik")
+        for key, value in dicta2.items():
+            print("nú á tölvan leik")
+            print("Tölvan er með hrútinn",key)
         flokkur = randint(1,8)
     if flokkur == 1:
         print("Nú verður keppt um hvor hrútur er með meiri þyngd", )
         sleep(3)
     elif flokkur == 2:
-        print("Nú verður keppt um hvor hrútur er á dætur með meiri mjólkurlögn")
+        print("Nú verður keppt um hvor hrútur á dætur með meiri mjólkurlögn")
         sleep(3)
     elif flokkur == 3:
         print("Nú verður keppt hvor hrútur er með betri ull")
@@ -109,4 +102,3 @@ while kostur == "ja":
 
     kostur=input("Viltu halda áfram?")
     sleep(3)
-
