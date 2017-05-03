@@ -6,6 +6,7 @@ from time import *
 teljari = 1
 hrutateljari = 0
 teljari1 = 1
+teljari2 = 1
 kostur = "ja"
 flokkur = 0
 hrutalisti = []
@@ -20,8 +21,34 @@ frjosemi = 6
 thykkt_bakvodva = 7
 einkunn_fyrir_malir = 8
 
+with open("hrutar.txt", "r", encoding="utf-8")as f:
+    texti = f.read()
+    texti2 = texti.split(";")
+print(texti2)
+for x in range(len(texti2)):
+    hrutalisti.append(texti2[hrutateljari])
+    hrutateljari += 1
+shuffle(hrutalisti)
+print(hrutalisti[0])
+flag=True
+for i in range(len(texti2)):
+    while len(hrutalisti)>0 and flag==True:
+        teljari2 += 1
+        if teljari2 % 2 == 0:
+            spilari1.append(hrutalisti[0])
 
-
+        if teljari2 % 2 == 1:
+            tolva.append(hrutalisti[0])
+            flag = False
+print("spilari er með",spilari1)
+print("tölvan er með",tolva)
+dicta1 = eval(spilari1[0])
+dicta2 = eval(tolva[0])
+print(dicta1)
+for key, value in dicta1.items():
+    print(key)
+    print(value[0])
+print(hrutalisti)
 while kostur == "ja":
     teljari1+=1
     if teljari1%2==0:
@@ -40,7 +67,7 @@ while kostur == "ja":
         print("nú á tölvan leik")
         flokkur = randint(1,8)
     if flokkur == 1:
-        print("Nú verður keppt um hvor hrútur er með meiri þyngd")
+        print("Nú verður keppt um hvor hrútur er með meiri þyngd", )
         sleep(3)
     elif flokkur == 2:
         print("Nú verður keppt um hvor hrútur er á dætur með meiri mjólkurlögn")
@@ -64,26 +91,16 @@ while kostur == "ja":
         print("Nú verður keppt um hvor hrútur er með betri malir")
         sleep(3)
 
+
     if flokkur != 0 and flokkur <= 8:
-        with open("hrutar.txt", "r", encoding="utf-8")as f:
-            texti = f.read()
-            texti2 = texti.split(";")
-            for x in range(len(texti2)):
-                hrutalisti.append(texti2[hrutateljari])
-                hrutateljari += 1
-                teljari += 1
+        print("calm your pussy")
 
-            if hrutateljari == len(texti2):
-                hrutateljari = 0
-                teljari = 1
 
-            #hrutalisti.remove('\n')
-            print(hrutalisti)
 
-            dicta=eval(hrutalisti[0])
-        for key,value in dicta.items():
-            print(key)
 
+
+    if spilari1 == False or tolva == False:
+        print("búið")
 
 
     else:
@@ -92,3 +109,4 @@ while kostur == "ja":
 
     kostur=input("Viltu halda áfram?")
     sleep(3)
+
