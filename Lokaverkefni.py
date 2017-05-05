@@ -12,6 +12,7 @@ flokkur = 0
 hrutalisti = []
 tolva=[]
 spilari1=[]
+bord=[]
 þyngd = 1
 mjolkurlagni_daetra = 2
 einkunn_ullar = 3
@@ -24,41 +25,30 @@ einkunn_fyrir_malir = 8
 with open("hrutar.txt", "r", encoding="utf-8")as f:
     for line in f:
         hrutalisti.append(eval(line))
-'''
-    texti = f.read()
-    texti2 = texti.split(";")
-for x in range(len(texti2)):
-    hrutalisti.append(texti2[hrutateljari])
-    hrutateljari += 1
-'''
 shuffle(hrutalisti)
 spilari1.append(hrutalisti[:26])
 tolva.append(hrutalisti[26:])
-print(spilari1)
-print(tolva)
-
-#dicta2 = tolva[0]
-while kostur == "ja":
+while len(spilari1[0])==0 or len(tolva[0]):
     teljari1+=1
     if teljari1%2==0:
         dicta1 = spilari1[0]
         #for key, value in dicta1.items():
         print("Nú á notandi leik")
-        print("Notandi er með hrútinn", spilari1[key])
+        print("Notandi er með hrútinn", spilari1[0][0].keys())
         print("-------------------------------------------------------------------------------")
-        print("Veldu 1 ef þú vilt keppa í þyngd hrútsins.----------------------------",value[0],"KG. \n"
-              "Veldu 2 ef þú vilt keppa í mjólkurlagni dætra sem hrúturinn á.--------",value[1],"\n"
-              "Veldu 3 ef þú vilt keppa í gæði ullar sem er á hrútnum.---------------",value[2],"\n"
-              "Veldu 4 ef þú vilt keppa í fjölda afkvæma sem hrúturinn á.------------",value[3],"\n"
-              "Veldu 5 ef þú vilt keppa í gæði lærsins sem hrúturinn hefur.----------",value[4],"\n"
-              "Veldu 6 ef þú vilt keppa í frjósemi hrútsins.-------------------------",value[5],"\n"
-              "Veldu 7 ef þú vilt keppa í þykkt bakvöðva hrútsins.-------------------",value[6],"\n"
-              "Veldu 8 ef þú vilt keppa í gæðum fyrir malir hrútsins.----------------",value[7],"\n")
+        print("Veldu 1 ef þú vilt keppa í þyngd hrútsins.----------------------------",list(spilari1[0][0].values())[0][0],"KG. \n"
+              "Veldu 2 ef þú vilt keppa í mjólkurlagni dætra sem hrúturinn á.--------",list(spilari1[0][0].values())[0][1],"\n"
+              "Veldu 3 ef þú vilt keppa í gæði ullar sem er á hrútnum.---------------",list(spilari1[0][0].values())[0][2],"\n"
+              "Veldu 4 ef þú vilt keppa í fjölda afkvæma sem hrúturinn á.------------",list(spilari1[0][0].values())[0][3],"\n"
+              "Veldu 5 ef þú vilt keppa í gæði lærsins sem hrúturinn hefur.----------",list(spilari1[0][0].values())[0][4],"\n"
+              "Veldu 6 ef þú vilt keppa í frjósemi hrútsins.-------------------------",list(spilari1[0][0].values())[0][5],"\n"
+              "Veldu 7 ef þú vilt keppa í þykkt bakvöðva hrútsins.-------------------",list(spilari1[0][0].values())[0][6],"\n"
+              "Veldu 8 ef þú vilt keppa í gæðum fyrir malir hrútsins.----------------",list(spilari1[0][0].values())[0][7],"\n")
         print("-------------------------------------------------------------------------------")
         flokkur=int(input("Sláðu inn tölu til að velja flokk!"))
     if teljari1%2==1:
         dicta2 = tolva[0]
-        for key, value in dicta2.items():
+        for key, value in dicta2[0].items():
             print("Nú á tölvan leik")
             print("Tölvan er með hrútinn",key)
             print(value)
@@ -89,38 +79,47 @@ while kostur == "ja":
         print("Nú verður keppt um hvor hrútur er með betri malir")
         sleep(3)
 
-
+    dicta2 = tolva[0]
     if flokkur != 0 and flokkur <= 8:
-        for key,value[flokkur-1] in dicta1.items():
+        for key,value in dicta1[0].items():
             print("Notandi er með hrútinn", key)
             print(key,"er með", value[flokkur-1])
-        for key,value[flokkur-1] in dicta2.items():
+            bord.append(dicta1[0])
+            spilari1[0].remove(dicta1[0])
+            sleep(2)
+        for key,value in dicta2[0].items():
             print("Tölvan er með hrútinn", key)
             print(key,"er með",value[flokkur-1])
-        if value[flokkur-1] in dicta1.items() > value[flokkur-1] in dicta2.items:
+            bord.append(dicta2[0])
+            tolva[0].remove(dicta2[0])
+            sleep(2)
+        if list(dicta1[0].values())[0][flokkur - 1] > list(dicta2[0].values())[0][flokkur - 1]:
             print("Notandi hefur unnið")
-            spilari1[-1].append(spilari1[0])
-            spilari1[-1].append(tolva[0])
-        if value[flokkur-1] in dicta2.items() > value[flokkur-1] in dicta1.items:
-            print("Notandi hefur unnið")
-            tolva[-1].append(spilari1[0])
-            tolva[-1].append(tolva[0])
+            print(bord)
+            spilari1[-1].append(bord)
 
-
-    if len(spilari1) == 0:
-        print("Notandi hefur tapað öllum hrútunum sínum")
-        print("Tölvan hefur unnið")
-        print("SKYNET!!!!")
-        break
-    elif len(tolva) ==0:
-        print("Tölvan hefur tapað öllum hrútunum sínum")
-        print("Notandi hefur unnið")
-        print("SKYNET IS NO MORE!!!!!")
+        elif list(dicta1[0].values())[0][flokkur - 1] < list(dicta2[0].values())[0][flokkur - 1]:
+            print("Tölva hefur unnið")
+            print(bord)
+            tolva[-1].append(bord)
+        else:
+            print("Jafntefli")
 
     if flokkur == 0 or flokkur > 8:
         print("Þú verður að velja flokk til að keppa í, gerðu aftur!")
         teljari1-=1
 
-    print("Notandi er með", len(spilari1),"hrúta")
-    print("Tölvan er með", len(tolva),"hrúta")
+    print("Notandi er með", len(spilari1[0]),"hrúta")
+    print("Tölvan er með", len(tolva[0]),"hrúta")
     sleep(3)
+
+if len(spilari1[0]) == 0:
+    print("Notandi hefur tapað öllum hrútunum sínum")
+    print("Tölvan hefur unnið með", len(tolva), "hrúta")
+    print("SKYNET!!!!")
+
+
+elif len(tolva[0]) == 0:
+    print("Tölvan hefur tapað öllum hrútunum sínum")
+    print("Notandi hefur unnið með",len(spilari1))
+    print("SKYNET IS NO MORE!!!!!")
