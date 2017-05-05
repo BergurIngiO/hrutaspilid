@@ -3,15 +3,15 @@
 #Lokaverkefni í Forritun
 from random import *
 from time import *
+teljari = 1
 hrutateljari = 0
 teljari1 = 1
-teljari2 = 0
+teljari2 = 1
 kostur = "ja"
 flokkur = 0
 hrutalisti = []
 tolva=[]
 spilari1=[]
-pottur=[]
 þyngd = 1
 mjolkurlagni_daetra = 2
 einkunn_ullar = 3
@@ -28,8 +28,6 @@ for x in range(len(texti2)):
     hrutalisti.append(texti2[hrutateljari])
     hrutateljari += 1
 shuffle(hrutalisti)
-print(hrutalisti)
-print(len(hrutalisti))
 spilari1.append(hrutalisti[:25])
 tolva.append(hrutalisti[26:])
 print(spilari1)
@@ -40,7 +38,7 @@ while kostur == "ja":
     teljari1+=1
     if teljari1%2==0:
         for key, value in dicta1.items():
-            print("nú á notandi leik")
+            print("Nú á notandi leik")
             print("Notandi er með hrútinn", key)
             print("-------------------------------------------------------------------------------")
             print("Veldu 1 ef þú vilt keppa í þyngd hrútsins.----------------------------",value[0],"KG. \n"
@@ -55,7 +53,7 @@ while kostur == "ja":
             flokkur=int(input("Sláðu inn tölu til að velja flokk!"))
     if teljari1%2==1:
         for key, value in dicta2.items():
-            print("nú á tölvan leik")
+            print("Nú á tölvan leik")
             print("Tölvan er með hrútinn",key)
             print(value)
             sleep(2)
@@ -87,17 +85,36 @@ while kostur == "ja":
 
 
     if flokkur != 0 and flokkur <= 8:
-        print("BERRY ELLEN IS A MEMESTER!!!!")
+        for key,value[flokkur-1] in dicta1.items():
+            print("Notandi er með hrútinn", key)
+            print(key,"er með", value[flokkur-1])
+        for key,value[flokkur-1] in dicta2.items():
+            print("Tölvan er með hrútinn", key)
+            print(key,"er með",value[flokkur-1])
+            if value[flokkur-1] in dicta1.items() > value[flokkur-1] in dicta2.items:
+                print("Notandi hefur unnið")
+                spilari1[-1].append(spilari1[0])
+                spilari1[-1].append(tolva[0])
+            if value[flokkur-1] in dicta2.items() > value[flokkur-1] in dicta1.items:
+                print("Notandi hefur unnið")
+                tolva[-1].append(spilari1[0])
+                tolva[-1].append(tolva[0])
 
 
-    if spilari1 == False:
+    if len(spilari1) == 0:
         print("Notandi hefur tapað öllum hrútunum sínum")
         print("Tölvan hefur unnið")
         print("SKYNET!!!!")
         break
+    elif len(tolva) ==0:
+        print("Tölvan hefur tapað öllum hrútunum sínum")
+        print("Notandi hefur unnið")
+        print("SKYNET IS NO MORE!!!!!")
 
     if flokkur == 0 or flokkur > 8:
         print("Þú verður að velja flokk til að keppa í, gerðu aftur!")
         teljari1-=1
 
+    print("Notandi er með", len(spilari1),"hrúta")
+    print("Tölvan er með", len(tolva),"hrúta")
     sleep(3)
