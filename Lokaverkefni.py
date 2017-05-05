@@ -96,12 +96,18 @@ while len(spilari1[0])==0 or len(tolva[0]):
         if list(dicta1[0].values())[0][flokkur - 1] > list(dicta2[0].values())[0][flokkur - 1]:
             print("Notandi hefur unnið")
             print(bord)
-            spilari1[-1].append(bord)
+            print(dicta1)
+            dicta1 += (bord)
+            print(dicta1)
+            bord=[]
 
         elif list(dicta1[0].values())[0][flokkur - 1] < list(dicta2[0].values())[0][flokkur - 1]:
             print("Tölva hefur unnið")
             print(bord)
-            tolva[-1].append(bord)
+            print(dicta2)
+            dicta2 += (bord)
+            print(dicta2)
+            bord = []
         else:
             print("Jafntefli")
 
