@@ -40,14 +40,14 @@ while len(spilari1[0])==0 or len(tolva[0]):
         print("Nú á notandi leik")
         print("Notandi er með hrútinn", dicta1[0].keys())
         print("-------------------------------------------------------------------------------")
-        print("Veldu 1 ef þú vilt keppa í þyngd hrútsins.----------------------------",list(dicta1[0].values())[0][0],"KG. \n"
-              "Veldu 2 ef þú vilt keppa í mjólkurlagni dætra sem hrúturinn á.--------",list(dicta1[0].values())[0][1],"\n"
-              "Veldu 3 ef þú vilt keppa í gæði ullar sem er á hrútnum.---------------",list(dicta1[0].values())[0][2],"\n"
-              "Veldu 4 ef þú vilt keppa í fjölda afkvæma sem hrúturinn á.------------",list(dicta1[0].values())[0][3],"\n"
-              "Veldu 5 ef þú vilt keppa í gæði lærsins sem hrúturinn hefur.----------",list(dicta1[0].values())[0][4],"\n"
-              "Veldu 6 ef þú vilt keppa í frjósemi hrútsins.-------------------------",list(dicta1[0].values())[0][5],"\n"
-              "Veldu 7 ef þú vilt keppa í þykkt bakvöðva hrútsins.-------------------",list(dicta1[0].values())[0][6],"\n"
-              "Veldu 8 ef þú vilt keppa í gæðum fyrir malir hrútsins.----------------",list(dicta1[0].values())[0][7],"\n")
+        print("Veldu 0 ef þú vilt keppa í þyngd hrútsins.----------------------------",list(dicta1[0].values())[0][0],"KG. \n"
+              "Veldu 1 ef þú vilt keppa í mjólkurlagni dætra sem hrúturinn á.--------",list(dicta1[0].values())[0][1],"\n"
+              "Veldu 2 ef þú vilt keppa í gæði ullar sem er á hrútnum.---------------",list(dicta1[0].values())[0][2],"\n"
+              "Veldu 3 ef þú vilt keppa í fjölda afkvæma sem hrúturinn á.------------",list(dicta1[0].values())[0][3],"\n"
+              "Veldu 4 ef þú vilt keppa í gæði lærsins sem hrúturinn hefur.----------",list(dicta1[0].values())[0][4],"\n"
+              "Veldu 5 ef þú vilt keppa í frjósemi hrútsins.-------------------------",list(dicta1[0].values())[0][5],"\n"
+              "Veldu 6 ef þú vilt keppa í þykkt bakvöðva hrútsins.-------------------",list(dicta1[0].values())[0][6],"\n"
+              "Veldu 7 ef þú vilt keppa í gæðum fyrir malir hrútsins.----------------",list(dicta1[0].values())[0][7],"\n")
                                                                                     #Hér sérðu mig skilgreina fyrsta tagið í dicta1
                                                                                     #Og prenta values úr því
         print("-------------------------------------------------------------------------------")
@@ -62,21 +62,21 @@ while len(spilari1[0])==0 or len(tolva[0]):
             #Hér nota ég key og value í dicta2 fyrir tölvuna til að greina úr fyrsta dictionaríinu í listanum
         flokkur = randint(1,8)
         #Talvan velur sjálfkrafa flokk hér
-    if flokkur == 1:
+    if flokkur == 0:
         print("Nú verður keppt um hvor hrútur er með meiri þyngd", )
-    elif flokkur == 2:
+    elif flokkur == 1:
         print("Nú verður keppt um hvor hrútur á dætur með meiri mjólkurlögn")
-    elif flokkur == 3:
+    elif flokkur == 2:
         print("Nú verður keppt hvor hrútur er með betri ull")
-    elif flokkur == 4:
+    elif flokkur == 3:
         print("Nú verður keppt um hvor hrútur á fleiri afkvæmi")
-    elif flokkur == 5:
+    elif flokkur == 4:
         print("Nú verður keppt um hvor hrútur er með betri læri")
-    elif flokkur == 6:
+    elif flokkur == 5:
         print("Nú verður keppt um hvor hrúturinn er frjósamari")
-    elif flokkur == 7:
+    elif flokkur == 6:
         print("Nú verður keppt um hvor hrútur er með meiri gæði og þykkt í bakvöðvanum")
-    elif flokkur == 8:
+    elif flokkur == 7:
         print("Nú verður keppt um hvor hrútur er með betri malir")
     #hér ráðast flokkarnir og svo kemur þriggja sekúnda pása útaf sleep taginu
     dicta2 = tolva[0]
@@ -95,7 +95,7 @@ while len(spilari1[0])==0 or len(tolva[0]):
             bord.append(dicta2[0])
             tolva[0].remove(dicta2[0])
             #Þetta er alveg eins og í forlykkjunni á undan, bara tölvan er tekin í gegn
-        if list(dicta1[0].values())[0][flokkur - 1] < list(dicta2[0].values())[0][flokkur - 1]:
+        if list(dicta1[0].values())[0][flokkur] > list(dicta2[0].values())[0][flokkur]:
             #hér er lína sem skilgreinir hvort value er hærra og það skilgreinir hver vinnur0
             print("Notandi hefur unnið")
             print("")
@@ -103,7 +103,7 @@ while len(spilari1[0])==0 or len(tolva[0]):
             bord=[]
             #Hér appenda ég í aftur í dicta eða spilari1[0] því að þetta var tvöfaldur listi eins og ég sagði
             #Svo reseta ég bord því að nú er umferðin búin
-        elif list(dicta1[0].values())[0][flokkur - 1] > list(dicta2[0].values())[0][flokkur - 1]:
+        elif list(dicta1[0].values())[0][flokkur] < list(dicta2[0].values())[0][flokkur]:
             print("Tölva hefur unnið")
             print("")
             dicta2 += (bord)
@@ -114,25 +114,27 @@ while len(spilari1[0])==0 or len(tolva[0]):
             print("Jafntefli")
             print("Potturinn er með",len(bord),"hrúta.")
             #Hér er potturinn ekki tæmdur ef það er jafntefli
-    if flokkur == 0 or flokkur > 8:
+
+    if flokkur > 7:
         print("Þú verður að velja flokk til að keppa í, gerðu aftur!")
         teljari1-=1
         #Hér er látið notanda gera aftur ef hann skildi velja vitlaust
 
     print("Notandi er með", len(spilari1[0]),"hrúta")
     print("Tölvan er með", len(tolva[0]),"hrúta")
+    print("")
     #Hér er prentað stöðu leiksins
 
     if len(spilari1[0]) == 0:
         print("Notandi hefur tapað öllum hrútunum sínum")
-        print("Tölvan hefur unnið með", len(tolva), "hrúta")
+        print("Tölvan hefur unnið með", len(tolva[0]), "hrúta")
         print("SKYNET!!!!")
         #Ef spilarinn tapar öllum hrútunum á gerist þetta
         break
 
     elif len(tolva[0]) == 0:
         print("Tölvan hefur tapað öllum hrútunum sínum")
-        print("Notandi hefur unnið með",len(spilari1))
+        print("Notandi hefur unnið með",len(spilari1[0]))
         print("SKYNET IS NO MORE!!!!!")
         #ef talvan tapar öllum hrútunum sínum, þá gerist þetta
         break
