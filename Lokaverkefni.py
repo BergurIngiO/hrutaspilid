@@ -59,34 +59,25 @@ while len(spilari1[0])==0 or len(tolva[0]):
             print("Nú á tölvan leik")
             print("Tölvan er með hrútinn",key)
             print(value)
-            sleep(2)
             #Hér nota ég key og value í dicta2 fyrir tölvuna til að greina úr fyrsta dictionaríinu í listanum
         flokkur = randint(1,8)
         #Talvan velur sjálfkrafa flokk hér
     if flokkur == 1:
         print("Nú verður keppt um hvor hrútur er með meiri þyngd", )
-        sleep(3)
     elif flokkur == 2:
         print("Nú verður keppt um hvor hrútur á dætur með meiri mjólkurlögn")
-        sleep(3)
     elif flokkur == 3:
         print("Nú verður keppt hvor hrútur er með betri ull")
-        sleep(3)
     elif flokkur == 4:
         print("Nú verður keppt um hvor hrútur á fleiri afkvæmi")
-        sleep(3)
     elif flokkur == 5:
         print("Nú verður keppt um hvor hrútur er með betri læri")
-        sleep(3)
     elif flokkur == 6:
         print("Nú verður keppt um hvor hrúturinn er frjósamari")
-        sleep(3)
     elif flokkur == 7:
         print("Nú verður keppt um hvor hrútur er með meiri gæði og þykkt í bakvöðvanum")
-        sleep(3)
     elif flokkur == 8:
         print("Nú verður keppt um hvor hrútur er með betri malir")
-        sleep(3)
     #hér ráðast flokkarnir og svo kemur þriggja sekúnda pása útaf sleep taginu
     dicta2 = tolva[0]
     if flokkur != 0 and flokkur <= 8:
@@ -97,16 +88,14 @@ while len(spilari1[0])==0 or len(tolva[0]):
             #Þannig í staðinn fyrir að harðkóða þetta eða "Ljótkóða",þá nota ég þetta bara einfaldlega svona
             bord.append(dicta1[0])
             spilari1[0].remove(dicta1[0])
-            sleep(2)
             #Hérna appenda ég fyrsta tagið hjá notandanum í pottinn og set 2 sekúndna pásu
         for key,value in dicta2[0].items():
             print("Tölvan er með hrútinn", key)
             print(key,"er með",value[flokkur-1])
             bord.append(dicta2[0])
             tolva[0].remove(dicta2[0])
-            sleep(2)
             #Þetta er alveg eins og í forlykkjunni á undan, bara tölvan er tekin í gegn
-        if list(dicta1[0].values())[0][flokkur - 1] > list(dicta2[0].values())[0][flokkur - 1]:
+        if list(dicta1[0].values())[0][flokkur - 1] < list(dicta2[0].values())[0][flokkur - 1]:
             #hér er lína sem skilgreinir hvort value er hærra og það skilgreinir hver vinnur0
             print("Notandi hefur unnið")
             print("")
@@ -114,16 +103,17 @@ while len(spilari1[0])==0 or len(tolva[0]):
             bord=[]
             #Hér appenda ég í aftur í dicta eða spilari1[0] því að þetta var tvöfaldur listi eins og ég sagði
             #Svo reseta ég bord því að nú er umferðin búin
-        elif list(dicta1[0].values())[0][flokkur - 1] < list(dicta2[0].values())[0][flokkur - 1]:
+        elif list(dicta1[0].values())[0][flokkur - 1] > list(dicta2[0].values())[0][flokkur - 1]:
             print("Tölva hefur unnið")
             print("")
             dicta2 += (bord)
             bord = []
             #Nákvæmlega sama og hér að ofan, bara tölvan er tekinn í gegn
+
         else:
             print("Jafntefli")
-            #Hér er bara prentað jafntefla því að nú virkjast hinar if-setningarnar ekki
-            #Og þetta rennur aftur með tögin í pottinum
+            print("Potturinn er með",len(bord),"hrúta.")
+            #Hér er potturinn ekki tæmdur ef það er jafntefli
     if flokkur == 0 or flokkur > 8:
         print("Þú verður að velja flokk til að keppa í, gerðu aftur!")
         teljari1-=1
@@ -131,17 +121,18 @@ while len(spilari1[0])==0 or len(tolva[0]):
 
     print("Notandi er með", len(spilari1[0]),"hrúta")
     print("Tölvan er með", len(tolva[0]),"hrúta")
-    sleep(3)
     #Hér er prentað stöðu leiksins
 
-if len(spilari1[0]) == 0:
-    print("Notandi hefur tapað öllum hrútunum sínum")
-    print("Tölvan hefur unnið með", len(tolva), "hrúta")
-    print("SKYNET!!!!")
-    #Ef spilarinn tapar öllum hrútunum á gerist þetta 
+    if len(spilari1[0]) == 0:
+        print("Notandi hefur tapað öllum hrútunum sínum")
+        print("Tölvan hefur unnið með", len(tolva), "hrúta")
+        print("SKYNET!!!!")
+        #Ef spilarinn tapar öllum hrútunum á gerist þetta
+        break
 
-elif len(tolva[0]) == 0:
-    print("Tölvan hefur tapað öllum hrútunum sínum")
-    print("Notandi hefur unnið með",len(spilari1))
-    print("SKYNET IS NO MORE!!!!!")
-    #ef talvan tapar öllum hrútunum sínum, þá gerist þetta
+    elif len(tolva[0]) == 0:
+        print("Tölvan hefur tapað öllum hrútunum sínum")
+        print("Notandi hefur unnið með",len(spilari1))
+        print("SKYNET IS NO MORE!!!!!")
+        #ef talvan tapar öllum hrútunum sínum, þá gerist þetta
+        break
